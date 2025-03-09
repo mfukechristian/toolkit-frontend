@@ -19,6 +19,7 @@ const getCategoryColor = (category) => {
 const HomePage = () => {
   const [sources, setSources] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchSources = async () => {
@@ -29,6 +30,8 @@ const HomePage = () => {
         setSources(response.data);
       } catch (error) {
         console.error("Error fetching sources:", error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -58,55 +61,63 @@ const HomePage = () => {
         </p>
       </div>
 
-      {/* Button Container */}
-      <div className="button-container">
-        <button
-          className={`filter-button ${
-            selectedCategory === null ? "active" : ""
-          }`}
-          onClick={() => setSelectedCategory(null)}
-        >
-          All
-        </button>
-        {categories.map((category) => (
-          <button
-            key={category}
-            className={`filter-button ${
-              selectedCategory === category ? "active" : ""
-            }`}
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-
-      {/* Grid Container */}
-      <div className="grid-container">
-        {filteredSources.map((source) => (
-          <div key={source._id} className="card">
-            <a href={source.url} target="_blank" rel="noopener noreferrer">
-              <div className="card-image">
-                {source.image ? (
-                  <img src={source.image} alt={source.name} />
-                ) : (
-                  <div className="placeholder-image">No Image</div>
-                )}
-              </div>
-            </a>
-            <div className="card-content">
-              <div
-                className="category-chip"
-                style={{ backgroundColor: getCategoryColor(source.category) }}
+      {loading ? (
+        <div className="loading-message">Loading...</div>
+      ) : (
+        <>
+          {/* Button Container */}
+          <div className="button-container">
+            <button
+              className={`filter-button ${
+                selectedCategory === null ? "active" : ""
+              }`}
+              onClick={() => setSelectedCategory(null)}
+            >
+              All
+            </button>
+            {categories.map((category) => (
+              <button
+                key={category}
+                className={`filter-button ${
+                  selectedCategory === category ? "active" : ""
+                }`}
+                onClick={() => setSelectedCategory(category)}
               >
-                {source.category}
-              </div>
-              <h3 className="card-title">{source.name}</h3>
-              <p className="card-description">{source.description}</p>
-            </div>
+                {category}
+              </button>
+            ))}
           </div>
-        ))}
-      </div>
+
+          {/* Grid Container */}
+          <div className="grid-container">
+            {filteredSources.map((source) => (
+              <div key={source._id} className="card">
+                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                  <div className="card-image">
+                    {source.image ? (
+                      <img src={source.image} alt={source.name} />
+                    ) : (
+                      <div className="placeholder-image">No Image</div>
+                    )}
+                  </div>
+                </a>
+                <div className="card-content">
+                  <div
+                    className="category-chip"
+                    style={{
+                      backgroundColor: getCategoryColor(source.category),
+                    }}
+                  >
+                    {source.category}
+                  </div>
+                  <h3 className="card-title">{source.name}</h3>
+                  <p className="card-description">{source.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
