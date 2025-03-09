@@ -1,0 +1,43 @@
+footer {
+  text-align: center;
+  color: #ffffff;
+  width: 100%;
+  font-weight: 600;
+  padding: 20px;
+}
+
+footer a {
+  color: #ffffff;
+}
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+  footer {
+    height: 250px;
+  }
+
+  .footer-text {
+    width: 90%;
+  }
+
+  .footer-text p {
+    width: 70%;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+  footer {
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .footer-text {
+    width: 100%;
+  }
+
+  .footer-text p {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+}
