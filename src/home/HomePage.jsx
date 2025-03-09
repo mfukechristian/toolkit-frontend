@@ -55,14 +55,6 @@ const HomePage = () => {
               </div>
               <h3 className="card-title">{source.name}</h3>
               <p className="card-description">{source.description}</p>
-              <a
-                href={source.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-link"
-              >
-                Visit Website
-              </a>
             </div>
           </div>
         ))}
