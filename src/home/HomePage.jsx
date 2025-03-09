@@ -18,6 +18,7 @@ const getCategoryColor = (category) => {
 
 const HomePage = () => {
   const [sources, setSources] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
     const fetchSources = async () => {
@@ -34,12 +35,47 @@ const HomePage = () => {
     fetchSources();
   }, []);
 
+  // Extract unique categories from the data
+  const categories = Array.from(
+    new Set(sources.map((source) => source.category))
+  );
+
+  // Filter sources based on selected category
+  const filteredSources =
+    selectedCategory === null
+      ? sources
+      : sources.filter((source) => source.category === selectedCategory);
+
   return (
     <div className="homepage">
+      {/* Button Container */}
+      <div className="button-container">
+        <button
+          className={`filter-button ${
+            selectedCategory === null ? "active" : ""
+          }`}
+          onClick={() => setSelectedCategory(null)}
+        >
+          All
+        </button>
+        {categories.map((category) => (
+          <button
+            key={category}
+            className={`filter-button ${
+              selectedCategory === category ? "active" : ""
+            }`}
+            onClick={() => setSelectedCategory(category)}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+      {/* Grid Container */}
       <div className="grid-container">
-        {sources.map((source) => (
+        {filteredSources.map((source) => (
           <div key={source._id} className="card">
-            <a href={source.url} target="_blank">
+            <a href={source.url} target="_blank" rel="noopener noreferrer">
               <div className="card-image">
                 {source.image ? (
                   <img src={source.image} alt={source.name} />

@@ -1,9 +1,44 @@
+/* Homepage Styles */
 .homepage {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Button Container Styles */
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filter-button {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #767676;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.filter-button:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Slightly darker on hover */
+  transform: scale(1.05);
+}
+
+.filter-button.active {
+  background-color: rgba(255, 255, 255, 0.2); /* Slightly darker when active */
+}
+
+/* Grid Container Styles */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -88,5 +123,15 @@
 
   .card-content {
     padding: 1rem;
+  }
+
+  /* Button Container Adjustments for Mobile */
+  .button-container {
+    gap: 0.75rem;
+  }
+
+  .filter-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
   }
 }
