@@ -1,0 +1,20 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin: 20px auto;
+}
+
+header img {
+  width: 50px;
+  height: 50px;
+}
+
+.cta a {
+  display: flex;
+  align-items: center;
+  text-decoration: underline;
+  color: #fff;
+  font-size: 0.9rem;
+}
