@@ -39,13 +39,15 @@ const HomePage = () => {
       <div className="grid-container">
         {sources.map((source) => (
           <div key={source._id} className="card">
-            <div className="card-image">
-              {source.image ? (
-                <img src={source.image} alt={source.name} />
-              ) : (
-                <div className="placeholder-image">No Image</div>
-              )}
-            </div>
+            <a href={source.url} target="_blank">
+              <div className="card-image">
+                {source.image ? (
+                  <img src={source.image} alt={source.name} />
+                ) : (
+                  <div className="placeholder-image">No Image</div>
+                )}
+              </div>
+            </a>
             <div className="card-content">
               <div
                 className="category-chip"
