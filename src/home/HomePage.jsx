@@ -4,11 +4,11 @@ import "./HomePage.css";
 
 const getCategoryColor = (category) => {
   const colors = {
-    AI: "#FF6B6B",
+    "Artificial Intelligence": "#FF6B6B",
     Directory: "#4ECDC4",
     Design: "#45B7D1",
     "Who to Follow": "#96CEB4",
-    Inspiration: "#FFEEAD",
+    Inspiration: "#000000",
     "No Code Tool": "#D4A5A5",
     Community: "#9B5DE5",
     Learn: "#00BBF9",
