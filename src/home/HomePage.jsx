@@ -48,6 +48,16 @@ const HomePage = () => {
 
   return (
     <div className="homepage">
+      <div className="welcome-message">
+        <h1>Welcome to The Toolkit</h1>
+        <p>
+          A curated library of tools and resources that helped me on my coding
+          journey. Whether you're self-taught, a frontend or backend developer,
+          an AI enthusiast, or a creator, I hope you find something of value in
+          it.
+        </p>
+      </div>
+
       {/* Button Container */}
       <div className="button-container">
         <button

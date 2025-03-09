@@ -5,6 +5,21 @@
   margin: 0 auto;
 }
 
+.welcome-message {
+  width: 80%;
+  margin: 50px 0;
+}
+
+.welcome-message h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.welcome-message p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
 /* Button Container Styles */
 .button-container {
   display: flex;
