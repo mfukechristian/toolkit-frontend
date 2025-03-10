@@ -22,12 +22,26 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchSources = async () => {
+    const fetchAndCacheSources = async () => {
       try {
+        // Check if sources are already cached in local storage
+        const cachedSources = localStorage.getItem("cachedSources");
+        if (cachedSources) {
+          const parsedSources = JSON.parse(cachedSources);
+          setSources(parsedSources);
+          return;
+        }
+
+        // Fetch sources from the API if not cached
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/sources`
         );
-        setSources(response.data);
+        const fetchedSources = response.data;
+
+        // Store fetched sources in local storage
+        localStorage.setItem("cachedSources", JSON.stringify(fetchedSources));
+
+        setSources(fetchedSources);
       } catch (error) {
         console.error("Error fetching sources:", error.message);
       } finally {
@@ -35,7 +49,7 @@ const HomePage = () => {
       }
     };
 
-    fetchSources();
+    fetchAndCacheSources();
   }, []);
 
   // Extract unique categories from the data
